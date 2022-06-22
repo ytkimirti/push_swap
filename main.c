@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    init(t_vars *vars, const int args[], int len)
+void init(t_vars *vars, const int *args, int len)
 {
 	int i;
 
@@ -16,28 +16,27 @@ void    init(t_vars *vars, const int args[], int len)
 		vars->nb[i] = 1010101;
 		i++;
 	}
-	render(vars, "init", true);
+	render(vars, "init");
 }
 
 void    test_funcs(t_vars *vars)
 {
-	rra(vars, true);
-	rrb(vars, true);
-	sa(vars, true);
-	sb(vars, true);
-	ss(vars, true);
-	pa(vars, true);
-	pb(vars, true);
-	ra(vars, true);
-	rb(vars, true);
-	rr(vars, true);
-	rrr(vars, true);
+	rra(vars);
+	rrb(vars);
+	sa(vars);
+	sb(vars);
+	ss(vars);
+	pa(vars);
+	pb(vars);
+	ra(vars);
+	rb(vars);
+	rr(vars);
+	rrr(vars);
 }
 
-int	main(void)
+int	main(int argc, const char *argv[])
 {
 	t_vars	vars;
 
-	vars.print_lists = false;
-	sort_triple_test(&vars);
+	ft_printf("Initing shit");
 }

@@ -15,5 +15,5 @@
 
 void	sort_wheel(t_vars *vars)
 {
-	pa(vars, false);
+	pa(vars);
 }

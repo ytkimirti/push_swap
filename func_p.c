@@ -13,7 +13,7 @@
 
 #include "push_swap.h"
 
-void	pa(t_vars *vars, bool print)
+void	pa(t_vars *vars)
 {
 	int i;
 
@@ -37,7 +37,7 @@ void	pa(t_vars *vars, bool print)
 	render(vars, "pa");
 }
 
-void	pb(t_vars *vars, bool print)
+void	pb(t_vars *vars)
 {
 	int	i;
 

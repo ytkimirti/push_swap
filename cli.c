@@ -61,29 +61,29 @@ void	init_cli(t_vars *vars)
 		if (!ft_strncmp(cmd, "e", 99))
 			get_number(vars);
 		if (!ft_strncmp(cmd, "p", 99))
-			render(vars, "print", true);
-		else if (!ft_strncmp(cmd, "sa", 999))
-			sa(vars, true);
-		else if (!ft_strncmp(cmd, "sb", 999))
-			sb(vars, true);
-		else if (!ft_strncmp(cmd, "ss", 999))
-			ss(vars, true);
-		else if (!ft_strncmp(cmd, "ra", 999))
-			ra(vars, true);
-		else if (!ft_strncmp(cmd, "rb", 999))
-			rb(vars, true);
-		else if (!ft_strncmp(cmd, "rr", 999))
-			rr(vars, true);
-		else if (!ft_strncmp(cmd, "rra", 999))
-			rra(vars, true);
-		else if (!ft_strncmp(cmd, "rrb", 999))
-			rrb(vars, true);
-		else if (!ft_strncmp(cmd, "rrr", 999))
-			rrr(vars, true);
-		else if (!ft_strncmp(cmd, "pa", 999))
-			pa(vars, true);
-		else if (!ft_strncmp(cmd, "pb", 999))
-			pb(vars, true);
+			render(vars, "print");
+//		else if (!ft_strncmp(cmd, "sa", 999))
+//			sa(vars, true);
+//		else if (!ft_strncmp(cmd, "sb", 999))
+//			sb(vars, true);
+//		else if (!ft_strncmp(cmd, "ss", 999))
+//			ss(vars, true);
+//		else if (!ft_strncmp(cmd, "ra", 999))
+//			ra(vars, true);
+//		else if (!ft_strncmp(cmd, "rb", 999))
+//			rb(vars, true);
+//		else if (!ft_strncmp(cmd, "rr", 999))
+//			rr(vars, true);
+//		else if (!ft_strncmp(cmd, "rra", 999))
+//			rra(vars, true);
+//		else if (!ft_strncmp(cmd, "rrb", 999))
+//			rrb(vars, true);
+//		else if (!ft_strncmp(cmd, "rrr", 999))
+//			rrr(vars, true);
+//		else if (!ft_strncmp(cmd, "pa", 999))
+//			pa(vars, true);
+//		else if (!ft_strncmp(cmd, "pb", 999))
+//			pb(vars, true);
 		else
 			ft_printf("\n");
 

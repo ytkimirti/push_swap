@@ -25,20 +25,20 @@ void	sort_tiple(t_vars *vars)
 
 	if (min_pos == 0 && max_pos == 1)
 	{
-		rra(vars, true);
-		sa(vars, true);
+		rra(vars);
+		sa(vars);
 	}
 	else if (min_pos == 2 && max_pos == 0)
 	{
-		ra(vars, true);
-		sa(vars, true);
+		ra(vars);
+		sa(vars);
 	}
 	else if (min_pos == 1 && max_pos == 2)
-		sa(vars, true);
+		sa(vars);
 	else if (min_pos == 1 && max_pos == 0)
-		ra(vars, true);
+		ra(vars);
 	else if (min_pos == 2 && max_pos == 1)
-		rra(vars, true);
+		rra(vars);
 }
 
 void	sort_triple_test(t_vars *vars)

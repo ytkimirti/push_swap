@@ -27,7 +27,6 @@ typedef struct
 	int	lb;
 	int	*na;
 	int	*nb;
-	bool print_lists;
 	bool print_next_command;
 } t_vars;
 

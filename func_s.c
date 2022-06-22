@@ -13,39 +13,35 @@
 
 #include "push_swap.h"
 
-void	sa(t_vars *vars, bool print)
+void	sa(t_vars *vars)
 {
 	int	c;
 
 	if (vars->la < 2)
-	{
-		render(vars, RED "sa cancelled > small" RST, print);
 		return ;
-	}
 	c = vars->na[0];
 	vars->na[0] = vars->na[1];
 	vars->na[1] = c;
-	render(vars, "sa", print);
+	render(vars, "sa");
 }
 
-void	sb(t_vars *vars, bool print)
+void	sb(t_vars *vars)
 {
 	int	c;
 
 	if (vars->lb < 2)
-	{
-		render(vars, RED "sb cancelled > small" RST, print);
 		return ;
-	}
 	c = vars->nb[0];
 	vars->nb[0] = vars->nb[1];
 	vars->nb[1] = c;
-	render(vars, "sb", print);
+	render(vars, "sb");
 }
 
-void	ss(t_vars *vars, bool print)
+void	ss(t_vars *vars)
 {
-	sa(vars, false);
-	sb(vars, false);
-	render(vars, "ss", print);
+	vars->print_next_command = false;
+	sa(vars);
+	vars->print_next_command = false;
+	sb(vars);
+	render(vars, "ss");
 }
