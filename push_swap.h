@@ -49,10 +49,10 @@ void	rrr(t_vars *vars);
 
 void	init_cli(t_vars *vars);
 
-void	init(t_vars *vars, const int args[], int len);
-
 int		find_min(int nums[], int len);
 int		find_max(int nums[], int len);
+
+int check_args(int argc, const char *argv[]);
 
 // Sorters
 void	sort_triple(t_vars *vars);

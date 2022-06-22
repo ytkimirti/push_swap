@@ -5,7 +5,7 @@ LIBS = libft/libft.a
 
 SRC := func_p.c func_r.c func_rr.c func_s.c \
 		main.c cli.c render.c sort_triple.c \
-		sort_wheel.c util_minmax.c
+		sort_wheel.c util_minmax.c check_args.c
 
 # Color Aliases
 CLRLINE = \033[A\33[2KT\r
@@ -25,7 +25,8 @@ UNAME = $(shell uname -s)
 CDEBUG ?= #-g3 #-fsanitize=address
 
 # Make variables
-CFLAGS = -Wall -Wextra -Werror
+#TODO: Add -Werror to here
+CFLAGS = -Wall -Wextra -g
 RM = rm -f
 CC = gcc -MD
 
@@ -79,8 +80,8 @@ cleanpackages:
 	@make fclean -j8 libft/
 
 # Thanks to abdulselam hocam
-debug: CFLAGS += -g
-debug: re
+#debug: CFLAGS += -g
+#debug: re
 
 address: CFLAGS += -fsanitize=address -g
 address: re

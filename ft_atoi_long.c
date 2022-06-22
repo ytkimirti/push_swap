@@ -1,40 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ft_atoi_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 15:47:40 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/03/08 17:27:47 by ykimirti         ###   ########.tr       */
+/*   Created: 2022/01/04 14:01:01 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/01/05 12:55:02 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 
-
-#include "check_args.h"
-#include "push_swap.h"
-
-
-void exit_program();
-
-void	render(t_vars *vars, char *move)
+static int	ft_isspace(char c)
 {
-	int	i;
-
-	if (!vars->print_next_command)
-	{
-		vars->print_next_command = true;
-		return;
-	}
-	ft_putstr_fd(move, 1);
-	ft_putstr_fd("\n", 1);
-	i = 0;
+	return (c == ' ' || c == '\f' || c == '\n' || c == '\r'
+	        || c == '\t' || c == '\v');
 }
 
-
-void exit_program()
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
-}

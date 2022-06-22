@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void init(t_vars *vars, const int *args, int len)
+void init(t_vars *vars, int argc, const int *args, int len)
 {
 	int i;
 
@@ -37,6 +37,9 @@ void    test_funcs(t_vars *vars)
 int	main(int argc, const char *argv[])
 {
 	t_vars	vars;
+	int nums_len;
 
-	ft_printf("Initing shit");
+	nums_len = check_args(argc, argv);
+
+	init(&vars, argc, argv, nums_len);
 }
