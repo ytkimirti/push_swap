@@ -36,7 +36,7 @@ void	get_number(t_vars *vars)
 	while (i-- > 0)
 		ints[i] = ft_atoi(nums[i]);
 	// Actually init it
-	init(vars, ints, len);
+//	init(vars, ints, len);
 
 	// Free mem
 	i = 0;

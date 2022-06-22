@@ -27,6 +27,7 @@ typedef struct
 	int	lb;
 	int	*na;
 	int	*nb;
+	int *nums;
 	bool print_next_command;
 } t_vars;
 
@@ -59,5 +60,8 @@ void	sort_triple(t_vars *vars);
 void	sort_triple_test(t_vars *vars);
 
 void	sort_wheel(t_vars *vars);
+
+void    exit_program();
+void bubble_sort(int arr[], int len);
 
 #endif

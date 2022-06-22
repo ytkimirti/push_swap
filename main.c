@@ -1,22 +1,24 @@
 #include "push_swap.h"
 
-void init(t_vars *vars, int argc, const int *args, int len)
+void init(t_vars *vars, int argc, const char *args[], int len)
 {
 	int i;
 
 	vars->la = len;
 	vars->lb = 0;
-	vars->nb = (int *)malloc(sizeof(int) * len);
 	vars->na = (int *)malloc(sizeof(int) * len);
+	vars->nb = (int *)malloc(sizeof(int) * len);
+	vars->nums = (int *)malloc(sizeof(int) * len);
 	vars->print_next_command = true;
 	i = 0;
 	while (i < vars->la)
 	{
-		vars->na[i] = args[i];
-		vars->nb[i] = 1010101;
+		vars->nums[i] = ft_atoi(args[i]);
+		vars->na[i] = vars->nums[i];
+		vars->nb[i] = -1;
 		i++;
 	}
-	render(vars, "init");
+	bubble_sort(vars->na, vars->la);
 }
 
 void    test_funcs(t_vars *vars)
@@ -40,6 +42,4 @@ int	main(int argc, const char *argv[])
 	int nums_len;
 
 	nums_len = check_args(argc, argv);
-
-	init(&vars, argc, argv, nums_len);
 }

@@ -60,5 +60,7 @@ int check_args(int argc, const char *argv[])
 		free(nums_str);
 		i++;
 	}
+	if (num_count <= 1)
+		exit_program();
 	return num_count;
 }
