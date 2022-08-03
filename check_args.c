@@ -1,9 +1,8 @@
-//
-// Created by Yusuf taha Kimirti on 6/22/22.
-//
-
 #include "push_swap.h"
+#include "libft.h"
 
+// Takes a string and check if that thing is
+// an integer.
 static bool is_integer(const char *str)
 {
 	int		    sign;
@@ -41,7 +40,7 @@ int check_args(int argc, const char *argv[])
 	char **nums_str;
 
 	if (argc <= 1)
-		exit_program();
+		exit(0);
 	i = 0;
 	num_count = 0;
 	while (i < argc)
