@@ -3,9 +3,12 @@ OBJ_DIR ?= obj
 
 LIBS = libft/libft.a
 
+LIB_FLAG = -Ilibft -Llibft -lft
+
 SRC := func_p.c func_r.c func_rr.c func_s.c \
 		main.c cli.c render.c sort_triple.c \
-		sort_wheel.c util_minmax.c check_args.c
+		sort_wheel.c util_minmax.c check_args.c \
+		bubble_sort.c
 
 # Color Aliases
 CLRLINE = \033[A\33[2KT\r
@@ -55,7 +58,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(NAME): libft/libft.a $(OBJ)
-	@$(CC) $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBS) -o $@
+	@$(CC) $(CFLAGS) $(CDEBUG) $(LIB_FLAG) $(OBJ) -o $@
 	@$(PRINTF) "$(GRN)$(NAME) is up to date!$(RST)\n"
 
 HAS_COMPILED="false"
@@ -67,7 +70,7 @@ $(OBJ_DIR)/%.o: %.c
 	@$(eval HAS_COMPILED = "true")
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "$(CLRLINE)[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)...\n" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CDEBUG) $(LIB_FLAG) -c $< -o $@
 
 # Installing libraries
 libft/libft.a:
