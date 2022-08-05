@@ -4,5 +4,9 @@
 
 void midwheel_algo(t_vars *vars)
 {
+	while (vars->lb != 0 || !is_sorted(vars->na, vars->la))
+	{
 
+	}
+	ft_printf("Sorting finished\n");
 }
