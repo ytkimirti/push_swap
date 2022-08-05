@@ -31,3 +31,62 @@ Test(middle, middle2)
 
 	cr_expect(eq(int, find_middle(nums, len), 3));
 }
+
+Test(mixed_extract, no_rotate)
+{
+	int stack_len = 4;
+	const int stack[] = {1, 2, 3, 4};
+
+	int extract_count = 2;
+	int rotate_count = 0;
+	const int correct[] = {1, 2};
+
+	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
+
+	struct cr_mem correct_mem = { .data = correct, .size = extract_count * sizeof (int) };
+	struct cr_mem result_mem = { .data = result, .size = extract_count * sizeof (int) };
+
+	cr_expect(eq(mem, correct_mem, result_mem));
+}
+
+Test(mixed_extract, more_rotate)
+{
+	int stack_len = 6;
+	const int stack[] = {3, 4, 5, 6, 1, 2};
+
+	int extract_count = 2;
+	int rotate_count = 2;
+ 	int correct[] = {1, 2};
+
+	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
+
+	cr_expect(eq(int[extract_count], result, correct));
+}
+
+Test(mixed_extract, rotate2)
+{
+	int stack_len = 6;
+	const int stack[] = {3, 4, 5, 6, 1, 2};
+
+	int extract_count = 4;
+	int rotate_count = 2;
+ 	int correct[] = {1, 2, 3, 4};
+
+	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
+
+	cr_expect(eq(int[extract_count], result, correct));
+}
+
+Test(mixed_extract, rotate3)
+{
+	int stack_len = 6;
+	const int stack[] = {3, 4, 5, 6, 1, 2};
+
+	int extract_count = 6;
+	int rotate_count = 2;
+ 	int correct[] = {1, 2, 3, 4, 5, 6};
+
+	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
+
+	cr_expect(eq(int[extract_count], result, correct));
+}
