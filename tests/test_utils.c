@@ -2,6 +2,38 @@
 #include <criterion/new/assert.h>
 #include "../src/utils.h"
 
+Test(is_sorted, one)
+{
+	int len = 1;
+	const int nums[] = {1};
+
+	cr_expect(is_sorted(nums, len));
+}
+
+Test(is_sorted, two)
+{
+	int len = 5;
+	const int nums[] = {1, 2, 3, 4, 234};
+
+	cr_expect(is_sorted(nums, len));
+}
+
+Test(is_sorted, equal)
+{
+	int len = 7;
+	const int nums[] = {1, 2, 3, 4, 5, 5, 12};
+
+	cr_expect(not (is_sorted(nums, len)));
+}
+
+Test(is_sorted, small)
+{
+	int len = 3;
+	const int nums[] = {1, 5, 1};
+
+	cr_expect(not (is_sorted(nums, len)));
+}
+
 Test(middle, small)
 {
 	int len = 1;

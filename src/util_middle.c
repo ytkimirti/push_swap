@@ -30,7 +30,7 @@ int find_middle(int *nums, int len)
 	return (middle);
 }
 
-bool is_sorted(int *nums, int len)
+bool is_sorted(const int *nums, int len)
 {
 	int	i;
 
