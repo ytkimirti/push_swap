@@ -1,5 +1,3 @@
-#include "push_swap.h"
-
 void bubble_sort(int arr[], int len)
 {
 	int i;

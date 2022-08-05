@@ -19,8 +19,6 @@ void exit_program();
 
 void	render(t_vars *vars, char *move)
 {
-	int	i;
-
 	if (!vars->print_next_command)
 	{
 		vars->print_next_command = true;
@@ -28,9 +26,7 @@ void	render(t_vars *vars, char *move)
 	}
 	ft_putstr_fd(move, 1);
 	ft_putstr_fd("\n", 1);
-	i = 0;
 }
-
 
 void exit_program()
 {

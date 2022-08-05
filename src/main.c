@@ -1,6 +1,8 @@
 #include "push_swap.h"
+#include "bubble_sort.h"
+#include "funcs.h"
 
-void init(t_vars *vars, int argc, const char *args[], int len)
+void init(t_vars *vars, const char *args[], int len)
 {
 	int i;
 
@@ -42,4 +44,6 @@ int	main(int argc, const char *argv[])
 	int nums_len;
 
 	nums_len = check_args(argc, argv);
+	ft_printf("Nums len: %d\n", nums_len);
+	//init(&vars, argv, nums_len);
 }

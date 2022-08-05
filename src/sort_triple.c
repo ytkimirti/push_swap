@@ -12,6 +12,7 @@
 
 
 #include "push_swap.h"
+#include "funcs.h"
 
 void	sort_tiple(t_vars *vars)
 {
@@ -40,19 +41,3 @@ void	sort_tiple(t_vars *vars)
 	else if (min_pos == 2 && max_pos == 1)
 		rra(vars);
 }
-
-//void	sort_triple_test(t_vars *vars)
-//{
-//	init(vars, (int []){1, 2, 3}, 3);
-//	sort_tiple(vars);
-//	init(vars, (int []){1, 3, 2}, 3);
-//	sort_tiple(vars);
-//	init(vars, (int []){2, 1, 3}, 3);
-//	sort_tiple(vars);
-//	init(vars, (int []){3, 1, 2}, 3);
-//	sort_tiple(vars);
-//	init(vars, (int []){2, 3, 1}, 3);
-//	sort_tiple(vars);
-//	init(vars, (int []){3, 2, 1}, 3);
-//	sort_tiple(vars);
-//}

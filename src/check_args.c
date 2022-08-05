@@ -1,9 +1,9 @@
 #include "push_swap.h"
-#include "libft.h"
+#include "../libft/libft.h"
 
 // Takes a string and check if that thing is
 // an integer.
-static bool is_integer(const char *str)
+bool is_integer(const char *str)
 {
 	int		    sign;
 	long long	nb;
@@ -21,12 +21,14 @@ static bool is_integer(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nb = nb * 10 + (str[i] - '0');
-		if (nb > 2147483647 && sign == 1)
-			return false;
-		if (nb > 2147483648 && sign == -1)
-			return false;
+		if (nb > INT_MAX && sign == 1)
+			return (false);
+		if (nb * sign < INT_MIN && sign == -1)
+			return (false);
 		i++;
 	}
+	if (str[i] != '\0')
+		return (false);
 	return (true);
 }
 
@@ -41,7 +43,7 @@ int check_args(int argc, const char *argv[])
 
 	if (argc <= 1)
 		exit(0);
-	i = 0;
+	i = 1;
 	num_count = 0;
 	while (i < argc)
 	{
@@ -49,7 +51,7 @@ int check_args(int argc, const char *argv[])
 		if (nums_str == NULL)
 			exit_program();
 		j = 0;
-		while (nums_str && nums_str[j])
+		while (nums_str[j])
 		{
 			if (!is_integer(nums_str[j]))
 				exit_program();

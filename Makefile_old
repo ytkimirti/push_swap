@@ -1,0 +1,124 @@
+BIN ?= push_swap
+OBJ_DIR ?= obj
+
+LIBS = libft/libft.a
+
+LIB_FLAG = -Ilibft -Llibft -lft
+
+SRC := func_p.c func_r.c func_rr.c func_s.c \
+		main.c cli.c render.c sort_triple.c \
+		sort_wheel.c util_minmax.c check_args.c \
+		bubble_sort.c
+
+# Color Aliases
+CLRLINE = \033[A\33[2KT\r
+RST = \033[0;39m
+GRY = \033[0;90m
+RED = \033[0;91m
+GRN = \033[0;92m
+YLW = \033[0;93m
+BLU = \033[0;94m
+MAG = \033[0;95m
+CYN = \033[0;96m
+WHT = \033[0;97m
+
+TEST_DIR=tests
+TEST_SRC=$(wildcard $(TEST_DIR)/*.c)
+TEST_BINS=$(pathsubst $(TEST_DIR)/%.c, $(TEST_DIR)/bin/%, $(TEST_SRC))
+
+SHELL=/bin/bash
+UNAME = $(shell uname -s)
+
+CDEBUG ?= #-g3 #-fsanitize=address
+
+# Make variables
+#TODO: Add -Werror to here
+CFLAGS = -Wall -Wextra -g
+RM = rm -f
+CC = gcc -MD
+
+NAME = $(BIN)
+
+PRINTF = LC_NUMERIC="en_US.UTF-8" printf
+
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+
+# Progress vars
+SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
+ifeq ($(shell test $(SRC_COUNT_TOT) -le 0; echo $$?),0)
+	SRC_COUNT_TOT := $(shell echo -n $(SRC) | wc -w)
+endif
+SRC_COUNT := 1
+SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
+
+all: $(NAME)
+
+run: all
+	./$(NAME) 9 1 2 5 2 6 7
+
+$(OBJ): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(NAME): libft/libft.a $(OBJ)
+	@$(CC) $(CFLAGS) $(CDEBUG) $(LIB_FLAG) $(OBJ) -o $@
+	@$(PRINTF) "$(GRN)$(NAME) is up to date!$(RST)\n"
+
+HAS_COMPILED="false"
+
+$(OBJ_DIR)/%.o: %.c
+	@if [ "$(HAS_COMPILED)" == "false" ]; then \
+		$(PRINTF) "\n"; \
+		fi
+	@$(eval HAS_COMPILED = "true")
+	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
+	@$(PRINTF) "$(CLRLINE)[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)...\n" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
+	@$(CC) $(CFLAGS) $(CDEBUG) $(LIB_FLAG) -c $< -o $@
+
+# Installing libraries
+libft/libft.a:
+	@if [ ! -d "libft" ]; then \
+		git clone --depth 1 https://github.com/ytkimirti/libft.git; \
+	fi
+	@make all -j8 -C libft/
+
+cleanpackages:
+	@make fclean -j8 libft/
+
+# Thanks to abdulselam hocam
+#debug: CFLAGS += -g
+#debug: re
+
+address: CFLAGS += -fsanitize=address -g
+address: re
+
+bonus: all
+
+clean:
+	@$(PRINTF) "$(CYN)Cleaning up object files in $(OBJ_DIR)...$(RST)\n"
+	@$(RM) -r $(OBJ_DIR)
+
+fclean: clean
+	@$(RM) $(NAME)
+	@$(PRINTF) "$(CYN)Cleaning up $(NAME)$(RST)\n"
+
+norminette:
+	@if [ -d "libft" ]; then \
+		make norminette -C libft\; \
+	fi
+	@$(PRINTF) "$(CYN)Checking norm for $(NAME)...$(RST)\n"
+	@norminette -R CheckForbiddenSourceHeader
+
+re: fclean
+	@make all
+
+$(TEST_DIR)/bin:
+	mkdir $@
+
+$(TEST_DIR)/bin/%: $(TEST)/%.c
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lcriterion
+
+-include $(OBJ_DIR)/*.d
+
+.PHONY: all clean fclean cleanlib re bonus norminette create_dirs install_packages re

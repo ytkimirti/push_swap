@@ -1,4 +1,5 @@
 obj/
+/tests/bin/
 libft/
 push_swap
 .DS_Store

@@ -1,114 +1,68 @@
-BIN ?= push_swap
-OBJ_DIR ?= obj
+NAME = push_swap
 
-LIBS = libft/libft.a
+# NOTE: Add -Werror here before pushing to intra
+CFLAGS = -Wall -Wextra -Ilibft
+LDFLAGS = -Llibft
+LDLIBS = -lft
 
-LIB_FLAG = -Ilibft -Llibft -lft
+# NOTE: You have to have libcriterion.a file in your LIBRARY_PATH and criterion.h file in C_INCLUDE_PATH
+# If you installed them with homebrew, add them to these env variables in your shell config
+TESTFLAGS = -lcriterion
 
-SRC := func_p.c func_r.c func_rr.c func_s.c \
-		main.c cli.c render.c sort_triple.c \
-		sort_wheel.c util_minmax.c check_args.c \
-		bubble_sort.c
+CC = gcc
+SHELL = /bin/sh
 
-# Color Aliases
-CLRLINE = \033[A\33[2KT\r
-RST = \033[0;39m
-GRY = \033[0;90m
-RED = \033[0;91m
-GRN = \033[0;92m
-YLW = \033[0;93m
-BLU = \033[0;94m
-MAG = \033[0;95m
-CYN = \033[0;96m
-WHT = \033[0;97m
+SRC_DIR = src
+OBJ_DIR = obj
+TEST_DIR = tests
 
-SHELL=/bin/bash
-UNAME = $(shell uname -s)
+ENTRY_SRCS = src/main.c
 
-CDEBUG ?= #-g3 #-fsanitize=address
+# NOTE: Write there with your hand when you are done!
+# SRCS = src/summer.c
+# You SHALL NOT include main
+# SRCS := $(wildcard $(SRC_DIR)/*.c)
+SRCS = src/bubble_sort.c \
+			 src/check_args.c \
+			 src/func_p.c \
+			 src/func_r.c\
+			 src/func_rr.c \
+			 src/func_s.c \
+			 src/render.c \
+			 src/sort_triple.c \
+			 src/util_minmax.c
 
-# Make variables
-#TODO: Add -Werror to here
-CFLAGS = -Wall -Wextra -g
-RM = rm -f
-CC = gcc -MD
+TEST_SRCS = tests/test_args.c
 
-NAME = $(BIN)
-
-PRINTF = LC_NUMERIC="en_US.UTF-8" printf
-
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-
-# Progress vars
-SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
-ifeq ($(shell test $(SRC_COUNT_TOT) -le 0; echo $$?),0)
-	SRC_COUNT_TOT := $(shell echo -n $(SRC) | wc -w)
-endif
-SRC_COUNT := 1
-SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
+ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENTRY_SRCS))
+OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+TEST_BINS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/bin/%, $(TEST_SRCS))
 
 all: $(NAME)
 
-run: all
-	./$(NAME) 9 1 2 5 2 6 7
-
-$(OBJ): | $(OBJ_DIR)
+$(NAME): $(OBJS) $(ENTRY_OBJS)
+	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(ENTRY_OBJS) -o $@
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+	mkdir $(OBJ_DIR)
 
-$(NAME): libft/libft.a $(OBJ)
-	@$(CC) $(CFLAGS) $(CDEBUG) $(LIB_FLAG) $(OBJ) -o $@
-	@$(PRINTF) "$(GRN)$(NAME) is up to date!$(RST)\n"
+$(TEST_DIR)/bin:
+	mkdir $(TEST_DIR)/bin
 
-HAS_COMPILED="false"
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o: %.c
-	@if [ "$(HAS_COMPILED)" == "false" ]; then \
-		$(PRINTF) "\n"; \
-		fi
-	@$(eval HAS_COMPILED = "true")
-	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
-	@$(PRINTF) "$(CLRLINE)[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)...\n" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-	@$(CC) $(CFLAGS) $(CDEBUG) $(LIB_FLAG) -c $< -o $@
+$(TEST_DIR)/bin/%: $(TEST_DIR)/%.c $(OBJS) | $(TEST_DIR)/bin
+	$(CC) $(CFLAGS) $(LDLIBS) $(LDFLAGS) $(TESTFLAGS) $(OBJS) $< -o $@
 
-# Installing libraries
-libft/libft.a:
-	@if [ ! -d "libft" ]; then \
-		git clone --depth 1 https://github.com/ytkimirti/libft.git; \
-	fi
-	@make all -j8 -C libft/
+test: $(TEST_BINS)
+	for test in $(TEST_BINS) ; do ./$$test ; done
 
-cleanpackages:
-	@make fclean -j8 libft/
-
-# Thanks to abdulselam hocam
-#debug: CFLAGS += -g
-#debug: re
-
-address: CFLAGS += -fsanitize=address -g
-address: re
-
-bonus: all
+testv: $(TEST_BINS)
+	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
 clean:
-	@$(PRINTF) "$(CYN)Cleaning up object files in $(OBJ_DIR)...$(RST)\n"
-	@$(RM) -r $(OBJ_DIR)
+	rm -rf $(OBJ_DIR) $(TEST_DIR)/bin
 
 fclean: clean
-	@$(RM) $(NAME)
-	@$(PRINTF) "$(CYN)Cleaning up $(NAME)$(RST)\n"
-
-norminette:
-	@if [ -d "libft" ]; then \
-		make norminette -C libft\; \
-	fi
-	@$(PRINTF) "$(CYN)Checking norm for $(NAME)...$(RST)\n"
-	@norminette -R CheckForbiddenSourceHeader
-
-re: fclean
-	@make all
-
--include $(OBJ_DIR)/*.d
-
-.PHONY: all clean fclean cleanlib re bonus norminette create_dirs install_packages re
+	rm -f $(NAME)
