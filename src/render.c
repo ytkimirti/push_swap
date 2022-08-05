@@ -40,11 +40,20 @@ void	print_stacks(t_vars *vars)
 	if (vars->lb > max)
 		max = vars->lb;
 	i = 0;
-	ft_printf("a\tb");
-	ft_printf("-\t-");
+	ft_printf("a\tb\n");
+	ft_printf("-\t-\n");
 	while (i < max)
 	{
-		ft_printf("%d\t%d", vars->na[i], vars->nb[i]);
+		if (i < vars->la)
+			ft_printf("%d", vars->na[i]);
+		else
+			ft_printf(" ");
+		ft_printf("\t");
+		if (i < vars->lb)
+			ft_printf("%d", vars->nb[i]);
+		else
+			ft_printf(" ");
+		ft_printf("\n");
 		i++;
 	}
 }

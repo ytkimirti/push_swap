@@ -64,6 +64,9 @@ test: $(TEST_BINS)
 testv: $(TEST_BINS)
 	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
+run: all
+	./push_swap 4 5 2 1 3
+
 clean:
 	rm -rf $(OBJ_DIR) $(TEST_DIR)/bin
 

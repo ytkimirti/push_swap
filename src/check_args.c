@@ -57,6 +57,7 @@ int check_args(int argc, const char *argv[])
 		{
 			if (!is_integer(nums_str[j]))
 				exit_program();
+			free(nums_str[j]);
 			num_count++;
 			j++;
 		}
