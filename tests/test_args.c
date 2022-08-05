@@ -1,5 +1,6 @@
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
+#include <criterion/redirect.h>
 #include "../src/push_swap.h"
 #include <signal.h>
 
@@ -107,7 +108,7 @@ Test(check_args, joined2)
 	cr_expect(eq(int, result, 4));
 }
 
-Test(check_args, joined3, .exit_code = 1)
+Test(check_args, joined3, .exit_code = 1, .init = cr_redirect_stderr)
 {
 	int argc = 3;
 	const char *argv[] = {
@@ -120,7 +121,7 @@ Test(check_args, joined3, .exit_code = 1)
 	cr_expect(eq(int, result, 5));
 }
 
-Test(check_args, error, .exit_code = 1)
+Test(check_args, error, .exit_code = 1, .init = cr_redirect_stderr)
 {
 	int argc = 3;
 	const char *argv[] = {
@@ -141,7 +142,7 @@ Test(check_args, error2, .exit_code = 0)
 
 	check_args(argc, argv);
 }
-Test(check_args, error3, .exit_code = 1)
+Test(check_args, error3, .exit_code = 1, .init = cr_redirect_stderr)
 {
 	int argc = 2;
 	const char *argv[] = {
@@ -151,7 +152,7 @@ Test(check_args, error3, .exit_code = 1)
 
 	check_args(argc, argv);
 }
-Test(check_args, error4, .exit_code = 1)
+Test(check_args, error4, .exit_code = 1, .init = cr_redirect_stderr)
 {
 	int argc = 4;
 	const char *argv[] = {
