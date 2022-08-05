@@ -30,9 +30,11 @@ SRCS = src/bubble_sort.c \
 			 src/func_s.c \
 			 src/render.c \
 			 src/sort_triple.c \
-			 src/util_minmax.c
+			 src/util_minmax.c \
+			 src/util_middle.c
 
-TEST_SRCS = tests/test_args.c
+TEST_SRCS = tests/test_args.c \
+						tests/test_utils.c
 
 ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENTRY_SRCS))
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))

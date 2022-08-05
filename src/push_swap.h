@@ -32,9 +32,6 @@ typedef struct
 
 void	render(t_vars *vars, char *move);
 
-int		find_min(int nums[], int len);
-int		find_max(int nums[], int len);
-
 int check_args(int argc, const char *argv[]);
 
 // Sorters
