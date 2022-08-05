@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 
-
-#include "push_swap.h"
+#include "vars.h"
+#include "../libft/libft.h"
 
 void	render(t_vars *vars, char *move)
 {
@@ -40,8 +40,11 @@ void	print_stacks(t_vars *vars)
 	if (vars->lb > max)
 		max = vars->lb;
 	i = 0;
+	ft_printf("a\tb");
+	ft_printf("-\t-");
 	while (i < max)
 	{
+		ft_printf("%d\t%d", vars->na[i], vars->nb[i]);
 		i++;
 	}
 }

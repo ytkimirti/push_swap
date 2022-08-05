@@ -2,7 +2,7 @@
 
 # define INIT_H
 
-#include "push_swap.h"
+#include "vars.h"
 
 void init(t_vars *vars, const char *args[], int len);
 

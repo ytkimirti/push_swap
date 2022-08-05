@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 
-#include "push_swap.h"
+#include "vars.h"
 #include "funcs.h"
+#include "utils.h"
 
 void	sort_tiple(t_vars *vars)
 {

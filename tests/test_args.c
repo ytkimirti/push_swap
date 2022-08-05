@@ -1,7 +1,10 @@
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
 #include <criterion/redirect.h>
-#include "../src/push_swap.h"
+#include "../src/vars.h"
+#include "../src/check_args.h"
+#include "../src/vars.h"
+#include "../src/vars.h"
 #include <signal.h>
 
 Test(is_integer, positive)

@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 
-#include "push_swap.h"
+#include "vars.h"
+#include "render.h"
 
 void	pa(t_vars *vars)
 {

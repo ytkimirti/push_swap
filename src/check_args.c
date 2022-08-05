@@ -1,5 +1,7 @@
-#include "push_swap.h"
+#include "vars.h"
 #include "../libft/libft.h"
+#include <limits.h>
+#include "render.h"
 
 // Takes a string and check if that thing is
 // an integer.

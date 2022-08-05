@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 
-#include "push_swap.h"
+#include "vars.h"
+#include "render.h"
 
 void	ra(t_vars *vars)
 {

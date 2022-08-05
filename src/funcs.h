@@ -2,6 +2,8 @@
 
 # define FUNCS_H
 
+#include "vars.h"
+
 void	sa(t_vars *vars);
 void	sb(t_vars *vars);
 void	ss(t_vars *vars);

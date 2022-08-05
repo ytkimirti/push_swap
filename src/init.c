@@ -1,5 +1,7 @@
-#include "push_swap.h"
+#include "render.h"
+#include "vars.h"
 #include "bubble_sort.h"
+#include "../libft/libft.h"
 
 void init(t_vars *vars, const char *args[], int len)
 {

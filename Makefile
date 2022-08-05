@@ -31,7 +31,8 @@ SRCS = src/bubble_sort.c \
 			 src/render.c \
 			 src/sort_triple.c \
 			 src/util_minmax.c \
-			 src/util_middle.c
+			 src/util_middle.c \
+			 src/midwheel_algo.c
 
 TEST_SRCS = tests/test_args.c \
 						tests/test_utils.c

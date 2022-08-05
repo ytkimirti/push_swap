@@ -1,6 +1,11 @@
-#include "push_swap.h"
 #include "bubble_sort.h"
+#include "check_args.h"
 #include "funcs.h"
+#include "midwheel_algo.h"
+#include "vars.h"
+#include "../libft/libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void init(t_vars *vars, const char *args[], int len)
 {
@@ -44,6 +49,7 @@ int	main(int argc, const char *argv[])
 	int nums_len;
 
 	nums_len = check_args(argc, argv);
-	ft_printf("Nums len: %d\n", nums_len);
-	//init(&vars, argv, nums_len);
+	//ft_printf("Nums len: %d\n", nums_len);
+	init(&vars, argv, nums_len);
+	midwheel_algo(&vars);
 }

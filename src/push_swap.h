@@ -17,20 +17,9 @@
 
 #include "../libft/libft.h"
 #include "../libft/colors.h"
+#include "vars.h"
 #include <stdbool.h>
 #include <limits.h>
-
-typedef struct
-{
-	int	la;
-	int	lb;
-	int	*na;
-	int	*nb;
-	int *nums;
-	bool print_next_command;
-} t_vars;
-
-void	render(t_vars *vars, char *move);
 
 int check_args(int argc, const char *argv[]);
 

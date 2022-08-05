@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "vars.h"
+#include <limits.h>
 
 int		find_min(int nums[], int len)
 {
