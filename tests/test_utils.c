@@ -47,6 +47,7 @@ Test(mixed_extract, no_rotate)
 	struct cr_mem result_mem = { .data = result, .size = extract_count * sizeof (int) };
 
 	cr_expect(eq(mem, correct_mem, result_mem));
+	free(result);
 }
 
 Test(mixed_extract, more_rotate)
@@ -61,6 +62,8 @@ Test(mixed_extract, more_rotate)
 	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
 
 	cr_expect(eq(int[extract_count], result, correct));
+
+	free(result);
 }
 
 Test(mixed_extract, rotate2)
@@ -75,6 +78,7 @@ Test(mixed_extract, rotate2)
 	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
 
 	cr_expect(eq(int[extract_count], result, correct));
+	free(result);
 }
 
 Test(mixed_extract, rotate3)
@@ -89,4 +93,5 @@ Test(mixed_extract, rotate3)
 	int *result = extract_mixed_array(stack, extract_count, stack_len, rotate_count);
 
 	cr_expect(eq(int[extract_count], result, correct));
+	free(result);
 }
