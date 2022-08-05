@@ -13,6 +13,7 @@
 
 #include "vars.h"
 #include "../libft/libft.h"
+#include "../libft/colors.h"
 
 void	render(t_vars *vars, char *move)
 {
@@ -21,8 +22,10 @@ void	render(t_vars *vars, char *move)
 		vars->print_next_command = true;
 		return;
 	}
-	ft_putstr_fd(move, 1);
-	ft_putstr_fd("\n", 1);
+	// ft_putstr_fd(move, 1);
+	// ft_putstr_fd("\n", 1);
+	// BOLD
+	ft_printf(BGRN "%s\n" RST, move);
 }
 
 void exit_program()
