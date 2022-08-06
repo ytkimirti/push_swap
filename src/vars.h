@@ -4,6 +4,8 @@
 
 #include <stdbool.h>
 
+# define LOG true
+ 
 typedef struct
 {
 	int	la;

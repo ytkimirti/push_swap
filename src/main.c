@@ -4,6 +4,7 @@
 #include "midwheel_algo.h"
 #include "vars.h"
 #include "../libft/libft.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -59,7 +60,6 @@ int	main(int argc, const char *argv[])
 	int nums_len;
 
 	nums_len = check_args(argc, argv);
-	ft_printf("Nums len: %d\n", nums_len);
 	init(&vars, argv, argc, nums_len);
 	midwheel_algo(&vars);
 }

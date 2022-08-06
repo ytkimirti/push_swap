@@ -1,7 +1,7 @@
 NAME = push_swap
 
 # NOTE: Add -Werror here before pushing to intra
-CFLAGS = -Wall -Wextra -Ilibft
+CFLAGS = -Wall -Wextra -Ilibft -g
 LDFLAGS = -Llibft
 LDLIBS = -lft
 
@@ -28,11 +28,11 @@ SRCS = src/bubble_sort.c \
 			 src/func_r.c\
 			 src/func_rr.c \
 			 src/func_s.c \
+			 src/midwheel_algo.c \
 			 src/render.c \
-			 src/sort_triple.c \
-			 src/util_minmax.c \
+			 src/sorters.c \
 			 src/util_middle.c \
-			 src/midwheel_algo.c
+			 src/util_minmax.c
 
 TEST_SRCS = tests/test_args.c \
 						tests/test_utils.c
@@ -64,8 +64,13 @@ test: $(TEST_BINS)
 testv: $(TEST_BINS)
 	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
+run_tester: all push_swap_tester
+	bash push_swap_tester/tester.sh ./ 20 1
+
 run: all
-	./push_swap 4 5 2 1 3
+	./push_swap 2 3 5 12 10 6 9 7 4 1 8 11
+
+re: fclean all
 
 clean:
 	rm -rf $(OBJ_DIR) $(TEST_DIR)/bin

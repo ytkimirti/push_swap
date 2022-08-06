@@ -25,7 +25,10 @@ void	render(t_vars *vars, char *move)
 	// ft_putstr_fd(move, 1);
 	// ft_putstr_fd("\n", 1);
 	// BOLD
-	ft_printf(BGRN "%s\n" RST, move);
+	if (LOG)
+		ft_printf(BGRN "%s\n" RST, move);
+	else
+		ft_printf("%s\n", move);
 }
 
 void exit_program()
@@ -39,6 +42,8 @@ void	print_stacks(t_vars *vars)
 	int	max;
 	int	i;
 
+	if (!LOG)
+		return;
 	max = vars->la;
 	if (vars->lb > max)
 		max = vars->lb;
