@@ -8,12 +8,16 @@
  
 typedef struct
 {
-	int	la;
-	int	lb;
-	int	*na;
-	int	*nb;
-	int *nums;
-	bool print_next_command;
+	int	len;
+	int	*nums;
+	char c;
+} t_stack;
+
+typedef struct
+{
+	t_stack *a;
+	t_stack	*b;
+	bool		print_next_command;
 } t_vars;
 
 

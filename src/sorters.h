@@ -4,6 +4,6 @@
 
 #include "vars.h"
 
-void	sort_tiple(t_vars *vars);
+void	sort_tiple(t_vars *vars, t_stack *s);
 
 #endif

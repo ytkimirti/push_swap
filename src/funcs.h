@@ -4,19 +4,15 @@
 
 #include "vars.h"
 
-void	sa(t_vars *vars);
-void	sb(t_vars *vars);
+void	px(t_vars *vars, t_stack *from, t_stack *to);
+
+void	sx(t_vars *vars, t_stack *s);
 void	ss(t_vars *vars);
 
-void	pa(t_vars *vars);
-void	pb(t_vars *vars);
-
-void	ra(t_vars *vars);
-void	rb(t_vars *vars);
+void	rx(t_vars *vars, t_stack *s);
 void	rr(t_vars *vars);
 
-void	rra(t_vars *vars);
-void	rrb(t_vars *vars);
+void	rrx(t_vars *vars, t_stack *s);
 void	rrr(t_vars *vars);
 
 #endif

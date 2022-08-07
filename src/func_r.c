@@ -14,47 +14,31 @@
 #include "vars.h"
 #include "render.h"
 
-void	ra(t_vars *vars)
+// Rotate X
+void	rx(t_vars *vars, t_stack *s)
 {
 	int	first;
 	int	i;
 
-	if (vars->la < 2)
+	if (s->len < 2)
 		return ;
 	i = 0;
-	first = vars->na[0];
-	while (i < vars->la - 1)
+	first = s->nums[0];
+	while (i < s->len - 1)
 	{
-		vars->na[i] = vars->na[i + 1];
+		s->nums[i] = s->nums[i + 1];
 		i++;
 	}
-	vars->na[vars->la - 1] = first;
-	render(vars, "ra");
+	s->nums[s->len - 1] = first;
+	render(vars, "r", s->c);
 }
 
-void	rb(t_vars *vars)
-{
-	int	first;
-	int	i;
-
-	if (vars->lb < 2)
-		return ;
-	i = 0;
-	first = vars->nb[0];
-	while (i < vars->lb - 1)
-	{
-		vars->nb[i] = vars->nb[i + 1];
-		i++;
-	}
-	vars->nb[vars->lb - 1] = first;
-	render(vars, "rb");
-}
-
+// Rotate both
 void	rr(t_vars *vars)
 {
 	vars->print_next_command = false;
-	ra(vars);
+	rx(vars, vars->a);
 	vars->print_next_command = false;
-	rb(vars);
-	render(vars, "rr");
+	rx(vars, vars->b);
+	render(vars, "rr", '\0');
 }

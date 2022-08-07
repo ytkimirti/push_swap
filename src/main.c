@@ -15,10 +15,16 @@ void init(t_vars *vars, const char *argv[], int argc, int len)
 	int num_index;
 	char **nums_str;
 
-	vars->la = len;
-	vars->lb = 0;
-	vars->na = (int *)malloc(sizeof(int) * len);
-	vars->nb = (int *)malloc(sizeof(int) * len);
+	vars->a = (t_stack *)malloc(sizeof(t_stack));
+	vars->a->len = len;
+	vars->a->nums = (int *)malloc(sizeof(int) * len);
+	vars->a->c = 'a';
+
+	vars->b = (t_stack *)malloc(sizeof(t_stack));
+	vars->b->len = 0;
+	vars->b->nums = (int *)malloc(sizeof(int) * len);
+	vars->b->c = 'b';
+
 	vars->print_next_command = true;
 	num_index = 0;
 	i = 1;
@@ -28,8 +34,8 @@ void init(t_vars *vars, const char *argv[], int argc, int len)
 		j = 0;
 		while (nums_str[j])
 		{
-			vars->na[num_index] = ft_atoi(nums_str[j]);
-			vars->nb[num_index] = -1;
+			vars->a->nums[num_index] = ft_atoi(nums_str[j]);
+			vars->b->nums[num_index] = -1;
 			free(nums_str[j]);
 			num_index++;
 			j++;
@@ -41,15 +47,32 @@ void init(t_vars *vars, const char *argv[], int argc, int len)
 
 void    test_funcs(t_vars *vars)
 {
-	rra(vars);
-	rrb(vars);
-	sa(vars);
-	sb(vars);
+	t_stack *a;
+	t_stack *b;
+
+	a = vars->a;
+	b = vars->b;
+
+	px(vars, a, b);
+	px(vars, a, b);
+	px(vars, a, b);
+
+	rx(vars, a);
+	rx(vars, b);
+
+	rrx(vars, a);
+	rrx(vars, b);
+
+	sx(vars, a);
+	sx(vars, b);
 	ss(vars);
-	pa(vars);
-	pb(vars);
-	ra(vars);
-	rb(vars);
+
+	px(vars, b, a);
+	px(vars, b, a);
+
+	px(vars, a, b);
+	px(vars, a, b);
+
 	rr(vars);
 	rrr(vars);
 }
@@ -61,5 +84,7 @@ int	main(int argc, const char *argv[])
 
 	nums_len = check_args(argc, argv);
 	init(&vars, argv, argc, nums_len);
-	midwheel_algo(&vars);
+
+	test_funcs(&vars);
+	//midwheel_algo(&vars);
 }

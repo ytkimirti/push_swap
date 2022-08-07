@@ -14,50 +14,27 @@
 #include "vars.h"
 #include "render.h"
 
-void	pa(t_vars *vars)
+// Push to X
+void	px(t_vars *vars, t_stack *from, t_stack *to)
 {
 	int i;
 
-	if (vars->lb < 1)
+	if (from->len < 1)
 		return ;
-	vars->la++;
-	i = vars->la - 1;
+	to->len++;
+	i = to->len - 1;
 	while (i > 0)
 	{
-		vars->na[i] = vars->na[i - 1];
+		to->nums[i] = to->nums[i - 1];
 		i--;
 	}
-	vars->na[0] = vars->nb[0];
+	to->nums[0] = from->nums[0];
 	i = 1;
-	while (i < vars->lb)
+	while (i < from->len)
 	{
-		vars->nb[i - 1] = vars->nb[i];
+		from->nums[i - 1] = from->nums[i];
 		i++;
 	}
-	vars->lb--;
-	render(vars, "pa");
-}
-
-void	pb(t_vars *vars)
-{
-	int	i;
-
-	if (vars->la < 1)
-		return ;
-	vars->lb++;
-	i = vars->lb - 1;
-	while (i > 0)
-	{
-		vars->nb[i] = vars->nb[i - 1];
-		i--;
-	}
-	vars->nb[0] = vars->na[0];
-	i = 1;
-	while (i < vars->la)
-	{
-		vars->na[i - 1] = vars->na[i];
-		i++;
-	}
-	vars->la--;
-	render(vars, "pb");
+	from->len--;
+	render(vars, "p", to->c);
 }

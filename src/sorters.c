@@ -15,30 +15,28 @@
 #include "funcs.h"
 #include "utils.h"
 
-void	sort_tiple(t_vars *vars)
+void	sort_triple(t_vars *vars, t_stack *s)
 {
 	int		max_pos;
 	int		min_pos;
 
-	max_pos = find_max(vars->na, vars->la);
-	min_pos = find_min(vars->na, vars->la);
-
-	/*ft_printf(BYEL "min: %d max: %d\n" RST, min_pos, max_pos);*/
+	max_pos = find_max(s->nums, s->len);
+	min_pos = find_min(s->nums, s->len);
 
 	if (min_pos == 0 && max_pos == 1)
 	{
-		rra(vars);
-		sa(vars);
+		rrx(vars, s);
+		sx(vars, s);
 	}
 	else if (min_pos == 2 && max_pos == 0)
 	{
-		ra(vars);
-		sa(vars);
+		rx(vars, s);
+		sx(vars, s);
 	}
 	else if (min_pos == 1 && max_pos == 2)
-		sa(vars);
+		sx(vars, s);
 	else if (min_pos == 1 && max_pos == 0)
-		ra(vars);
+		rx(vars, s);
 	else if (min_pos == 2 && max_pos == 1)
-		rra(vars);
+		rrx(vars, s);
 }

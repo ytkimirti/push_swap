@@ -28,7 +28,6 @@ SRCS = src/bubble_sort.c \
 			 src/func_r.c\
 			 src/func_rr.c \
 			 src/func_s.c \
-			 src/midwheel_algo.c \
 			 src/render.c \
 			 src/sorters.c \
 			 src/util_middle.c \

@@ -15,7 +15,7 @@
 #include "../libft/libft.h"
 #include "../libft/colors.h"
 
-void	render(t_vars *vars, char *move)
+void	render(t_vars *vars, char *move, char stack_name)
 {
 	if (!vars->print_next_command)
 	{
@@ -25,10 +25,20 @@ void	render(t_vars *vars, char *move)
 	// ft_putstr_fd(move, 1);
 	// ft_putstr_fd("\n", 1);
 	// BOLD
-	if (LOG)
-		ft_printf(BGRN "%s\n" RST, move);
+	if (stack_name == '\0')
+	{
+		if (LOG)
+			ft_printf(BGRN "%s\n" RST, move);
+		else
+			ft_printf("%s\n", move);
+	}
 	else
-		ft_printf("%s\n", move);
+	{
+		if (LOG)
+			ft_printf(BGRN "%s%c\n" RST, move, stack_name);
+		else
+			ft_printf("%s%c\n", move, stack_name);
+	}
 }
 
 void exit_program()
@@ -44,21 +54,21 @@ void	print_stacks(t_vars *vars)
 
 	if (!LOG)
 		return;
-	max = vars->la;
-	if (vars->lb > max)
-		max = vars->lb;
+	max = vars->a->len;
+	if (vars->b->len > max)
+		max = vars->b->len;
 	i = 0;
 	ft_printf("a\tb\n");
 	ft_printf("-\t-\n");
 	while (i < max)
 	{
-		if (i < vars->la)
-			ft_printf("%d", vars->na[i]);
+		if (i < vars->a->len)
+			ft_printf("%d", vars->a->nums[i]);
 		else
 			ft_printf(" ");
 		ft_printf("\t");
-		if (i < vars->lb)
-			ft_printf("%d", vars->nb[i]);
+		if (i < vars->b->len)
+			ft_printf("%d", vars->b->nums[i]);
 		else
 			ft_printf(" ");
 		ft_printf("\n");

@@ -14,47 +14,31 @@
 #include "vars.h"
 #include "render.h"
 
-void	rra(t_vars *vars)
+// Reverse rotate X
+void	rrx(t_vars *vars, t_stack *s)
 {
 	int	last;
 	int	i;
 
-	if (vars->la < 2)
+	if (s->len < 2)
 		return ;
-	last = vars->na[vars->la - 1];
-	i = vars->la - 1;
+	last = s->nums[s->len - 1];
+	i = s->len - 1;
 	while (i > 0)
 	{
-		vars->na[i] = vars->na[i - 1];
+		s->nums[i] = s->nums[i - 1];
 		i--;
 	}
-	vars->na[0] = last;
-	render(vars, "rra");
+	s->nums[0] = last;
+	render(vars, "rr", s->c);
 }
 
-void	rrb(t_vars *vars)
-{
-	int	last;
-	int	i;
-
-	if (vars->lb < 2)
-		return ;
-	last = vars->nb[vars->lb - 1];
-	i = vars->lb - 1;
-	while (i > 0)
-	{
-		vars->nb[i] = vars->nb[i - 1];
-		i--;
-	}
-	vars->nb[0] = last;
-	render(vars, "rrb");
-}
-
+// Reverse rotate both
 void	rrr(t_vars *vars)
 {
 	vars->print_next_command = false;
-	rra(vars);
+	rrx(vars, vars->a);
 	vars->print_next_command = false;
-	rrb(vars);
-	render(vars, "rrr");
+	rrx(vars, vars->b);
+	render(vars, "rrr", '\0');
 }
