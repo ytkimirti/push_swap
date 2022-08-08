@@ -32,6 +32,7 @@ SRCS = src/bubble_sort.c \
 			 src/sorters.c \
 			 src/util_middle.c \
 			 src/util_minmax.c \
+			 src/util_is_sorted.c \
 			 src/midwheel_algo.c
 
 TEST_SRCS = tests/test_args.c \
@@ -64,7 +65,8 @@ test: $(TEST_BINS)
 testv: $(TEST_BINS)
 	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
-run_tester: all push_swap_tester
+run_tester: CFLAGS += -DLOG=false
+run_tester: re push_swap_tester
 	@echo "======== LIMIT IS 3 =============="
 	@bash push_swap_tester/tester.sh ./ 3 5 --quiet
 	@echo "======== LIMIT IS 12 =============="
@@ -76,6 +78,13 @@ run_tester: all push_swap_tester
 
 run: all
 	./push_swap 2 3 5 12 10 6 9 7 4 1 8 11
+
+re_nolog: CFLAGS += -DLOG=false
+re_nolog: re
+
+run_vis: CFLAGS += -DLOG=false
+run_vis: re
+	@python3 ./python_visualizer.py `ruby -e "puts (-200..200).to_a.shuffle.join(' ')"`
 
 re: fclean all
 

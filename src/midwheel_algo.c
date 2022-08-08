@@ -6,7 +6,7 @@
 #include "../libft/colors.h"
 #include "../libft/vector.h"
 
-int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
+void	send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 {
 	int		middle;
 	int		rotate_count;
@@ -16,6 +16,13 @@ int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 
 	while (chunk_size != 0)
 	{
+		if ((from == vars->a && is_sorted(vars->a->nums, vars->a->len)) ||
+				(from == vars->b && is_sorted_descending(vars->b->nums, vars->b->len)))
+		{
+			if (LOG)
+				ft_printf(BBLU "Stack a is already sorted, skipping chunk %d\n" RST, chunk_size);
+			return;
+		}
 		need_rotations = chunk_size != from->len;
 		middle = find_middle(from->nums, chunk_size);
 		rotate_count = 0;
@@ -88,7 +95,6 @@ int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 		push_count = 0;
 	}
 	print_stacks(vars);
-	return (rotate_count);
 }
 
 void midwheel_algo(t_vars *vars)
@@ -101,10 +107,10 @@ void midwheel_algo(t_vars *vars)
 
 	vars->chunks = ivec_new(64);
 	send_chunk(vars, vars->a, vars->b, vars->a->len);
-	print_chunks(vars);
+	print_chunks(vars, vars->b);
 	curr = vars->b;
 	other = vars->a;
-	while(vars->b->len > 0 || !is_sorted(vars->a->nums, vars->a->len))
+	while(!is_sorted(vars->a->nums, vars->a->len) || !is_sorted_descending(vars->b->nums, vars->b->len))
 	{
 		if (LOG)
 			ft_printf(BMAG "====== %c -> %c =======\n" RST, curr->c, other->c);
@@ -117,11 +123,13 @@ void midwheel_algo(t_vars *vars)
 			i++;
 		}
 		ivec_del(tmp_chunks);
-		print_chunks(vars);
+		print_chunks(vars, other);
 		tmp = curr;
 		curr = other;
 		other = tmp;
 	}
+	while (vars->b->len != 0)
+		px(vars, vars->b, vars->a);
 }
 
 

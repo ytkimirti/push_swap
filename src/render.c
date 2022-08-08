@@ -47,19 +47,14 @@ void exit_program()
 	exit(1);
 }
 
-void	print_chunks(t_vars *vars)
+void	print_chunks(t_vars *vars, t_stack *stack)
 {
 	int			i;
 	int			j;
 	int			stack_index;
-	t_stack	*stack;
 
 	if (!LOG)
 		return;
-	if (vars->a->len == 0)
-		stack = vars->b;
-	else
-		stack = vars->a;
 	i = vars->chunks->len - 1;
 	stack_index = 0;
 	ft_printf("=========\n");

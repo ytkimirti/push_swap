@@ -5,7 +5,11 @@
 #include <stdbool.h>
 #include "../libft/vector.h"
 
-# define LOG false
+#ifndef LOG
+
+# define LOG true
+
+#endif
  
 typedef struct
 {
