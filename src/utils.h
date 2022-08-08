@@ -11,5 +11,6 @@ bool	is_sorted_descending(const int *nums, int len);
 
 int	*copy_array(const int *nums, int len);
 int	*extract_mixed_array(const int *nums, int len, int stack_len, int rotate_count);
+bool is_integer(const char *str);
 
 #endif

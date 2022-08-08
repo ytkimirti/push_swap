@@ -23,14 +23,15 @@ ENTRY_SRCS = src/main.c
 # You SHALL NOT include main
 # SRCS := $(wildcard $(SRC_DIR)/*.c)
 SRCS = src/bubble_sort.c \
-			 src/check_args.c \
 			 src/func_p.c \
 			 src/func_r.c\
 			 src/func_rr.c \
 			 src/func_s.c \
 			 src/render.c \
 			 src/sorters.c \
+			 src/parse_args.c \
 			 src/util_middle.c \
+			 src/util_is_integer.c \
 			 src/util_minmax.c \
 			 src/util_is_sorted.c \
 			 src/midwheel_algo.c

@@ -50,6 +50,8 @@ void	send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 				chunk_size--;
 				push_count++;
 			}
+			// else if (chunk_size > 1 && ((from == vars->a && from->nums[0] < from->nums[1]) || (from == vars->b && from->nums[0] > from->nums[1])))
+			// 	sx(vars, from);
 			else
 			{
 				rx(vars, from);

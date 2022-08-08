@@ -7,7 +7,7 @@
 
 #ifndef LOG
 
-# define LOG true
+# define LOG false
 
 #endif
  

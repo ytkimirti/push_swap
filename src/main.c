@@ -1,47 +1,37 @@
 #include "bubble_sort.h"
-#include "check_args.h"
+#include "parse_args.h"
 #include "funcs.h"
 #include "midwheel_algo.h"
 #include "vars.h"
 #include "../libft/libft.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "render.h"
 
-void init(t_vars *vars, const char *argv[], int argc, int len)
+void init(t_vars *vars, t_ivec *nums)
 {
-	int i;
-	int j;
-	int num_index;
-	char **nums_str;
+	int	i;
 
 	vars->a = (t_stack *)malloc(sizeof(t_stack));
-	vars->a->len = len;
-	vars->a->nums = (int *)malloc(sizeof(int) * len);
-	vars->a->c = 'a';
-
 	vars->b = (t_stack *)malloc(sizeof(t_stack));
+	if (!vars->a || !vars->b)
+		exit_program();
+	vars->a->nums = (int *)malloc(sizeof(int) * nums->len);
+	vars->b->nums = (int *)malloc(sizeof(int) * nums->len);
+	if (!vars->a->nums || !vars->b->nums)
+		exit_program();
+	vars->a->len = nums->len;
+	vars->a->c = 'a';
 	vars->b->len = 0;
-	vars->b->nums = (int *)malloc(sizeof(int) * len);
 	vars->b->c = 'b';
-
 	vars->chunks = NULL;
 	vars->print_next_command = true;
-	num_index = 0;
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < nums->len)
 	{
-		nums_str = ft_split(argv[i], ' ');
-		j = 0;
-		while (nums_str[j])
-		{
-			vars->a->nums[num_index] = ft_atoi(nums_str[j]);
-			vars->b->nums[num_index] = -1;
-			free(nums_str[j]);
-			num_index++;
-			j++;
-		}
-		free(nums_str);
+		vars->a->nums[i] = nums->arr[i];
 		i++;
 	}
 }
@@ -81,11 +71,10 @@ void    test_funcs(t_vars *vars)
 int	main(int argc, const char *argv[])
 {
 	t_vars	vars;
-	int nums_len;
+	t_ivec	*parsed_args;
 
-	nums_len = check_args(argc, argv);
-	init(&vars, argv, argc, nums_len);
-
-	//test_funcs(&vars);
+	parsed_args = parse_args(argc, argv);
+	init(&vars, parsed_args);
+	ivec_del(parsed_args);
 	midwheel_algo(&vars);
 }
