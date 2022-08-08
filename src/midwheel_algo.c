@@ -99,13 +99,13 @@ void	send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 	print_stacks(vars);
 }
 
-void midwheel_algo(t_vars *vars)
+void	midwheel_algo(t_vars *vars)
 {
-	t_stack	*curr;
-	t_stack	*other;
-	t_stack	*tmp;
-	t_ivec	*tmp_chunks;
-	int			i;
+	t_stack		*curr;
+	t_stack		*other;
+	t_stack		*tmp;
+	t_ivec		*tmp_chunks;
+	int				i;
 
 	vars->chunks = ivec_new(64);
 	send_chunk(vars, vars->a, vars->b, vars->a->len);
@@ -133,5 +133,3 @@ void midwheel_algo(t_vars *vars)
 	while (vars->b->len != 0)
 		px(vars, vars->b, vars->a);
 }
-
-

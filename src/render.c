@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "vars.h"
 #include "../libft/libft.h"
 #include "../libft/colors.h"
@@ -20,11 +19,8 @@ void	render(t_vars *vars, char *move, char stack_name)
 	if (!vars->print_next_command)
 	{
 		vars->print_next_command = true;
-		return;
+		return ;
 	}
-	// ft_putstr_fd(move, 1);
-	// ft_putstr_fd("\n", 1);
-	// BOLD
 	if (stack_name == '\0')
 	{
 		if (LOG)
@@ -41,7 +37,7 @@ void	render(t_vars *vars, char *move, char stack_name)
 	}
 }
 
-void exit_program()
+void	exit_program(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
@@ -54,7 +50,7 @@ void	print_chunks(t_vars *vars, t_stack *stack)
 	int			stack_index;
 
 	if (!LOG)
-		return;
+		return ;
 	i = vars->chunks->len - 1;
 	stack_index = 0;
 	ft_printf("=========\n");
@@ -79,7 +75,7 @@ void	print_stacks(t_vars *vars)
 	int	i;
 
 	if (!LOG)
-		return;
+		return ;
 	max = vars->a->len;
 	if (vars->b->len > max)
 		max = vars->b->len;
@@ -101,11 +97,3 @@ void	print_stacks(t_vars *vars)
 		i++;
 	}
 }
-
-
-
-
-
-
-
-

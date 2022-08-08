@@ -1,6 +1,6 @@
 #include <stdbool.h>
 
-bool is_sorted(const int *nums, int len)
+bool	is_sorted(const int *nums, int len)
 {
 	int	i;
 
@@ -14,7 +14,7 @@ bool is_sorted(const int *nums, int len)
 	return (true);
 }
 
-bool is_sorted_descending(const int *nums, int len)
+bool	is_sorted_descending(const int *nums, int len)
 {
 	int	i;
 
@@ -27,4 +27,3 @@ bool is_sorted_descending(const int *nums, int len)
 	}
 	return (true);
 }
-

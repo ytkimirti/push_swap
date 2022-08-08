@@ -13,11 +13,12 @@
 #include "vars.h"
 #include <limits.h>
 
-int		find_min(int nums[], int len)
+int	find_min(int nums[], int len)
 {
-	int	min = INT_MAX;
+	int	min;
 	int	min_index;
 
+	min = INT_MAX;
 	min_index = -1;
 	while (len-- > 0)
 	{
@@ -30,11 +31,12 @@ int		find_min(int nums[], int len)
 	return (min_index);
 }
 
-int		find_max(int nums[], int len)
+int	find_max(int nums[], int len)
 {
-	int	max = INT_MIN;
+	int	max;
 	int	max_index;
 
+	max = INT_MIN;
 	max_index = -1;
 	while (len-- > 0)
 	{

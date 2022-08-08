@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "vars.h"
 #include "funcs.h"
 #include "utils.h"
@@ -22,7 +21,6 @@ void	sort_triple(t_vars *vars, t_stack *s)
 
 	max_pos = find_max(s->nums, s->len);
 	min_pos = find_min(s->nums, s->len);
-
 	if (min_pos == 0 && max_pos == 1)
 	{
 		rrx(vars, s);

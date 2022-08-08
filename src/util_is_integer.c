@@ -3,11 +3,11 @@
 
 // Takes a string and check if that thing is
 // an integer.
-bool is_integer(const char *str)
+bool	is_integer(const char *str)
 {
-	int		    sign;
+	int				sign;
+	int				i;
 	long long	nb;
-	int		    i;
 
 	i = 0;
 	nb = 0;
@@ -31,4 +31,3 @@ bool is_integer(const char *str)
 		return (false);
 	return (true);
 }
-
