@@ -60,10 +60,10 @@ void	print_chunks(t_vars *vars)
 		stack = vars->b;
 	else
 		stack = vars->a;
-	i = 0;
+	i = vars->chunks->len - 1;
 	stack_index = 0;
 	ft_printf("=========\n");
-	while (i < vars->chunks->len)
+	while (i >= 0)
 	{
 		j = 0;
 		while (j < vars->chunks->arr[i])
@@ -71,9 +71,9 @@ void	print_chunks(t_vars *vars)
 			ft_printf("%d\n", stack->nums[stack_index++]);
 			j++;
 		}
-		if (i != vars->chunks->len - 1)
-			ft_printf(RED "-\n" RST, stack->nums[i]);
-		i++;
+		if (i != 0)
+			ft_printf(RED "-\n" RST);
+		i--;
 	}
 	ft_printf("=========\n");
 }

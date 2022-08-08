@@ -34,6 +34,13 @@ int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 				chunk_size--;
 				print_stacks(vars);
 			}
+			else if (chunk_size == from->len && ((to == vars->b && from->nums[from->len - 1] < middle) || (to == vars->a && from->nums[from->len - 1] > middle)))
+			{
+				rrx(vars, from);
+				px(vars, from, to);
+				chunk_size--;
+				push_count++;
+			}
 			else
 			{
 				rx(vars, from);
@@ -54,7 +61,7 @@ int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 		{
 			if (LOG)
 				ft_printf(YEL "Last 2 elements on chunk\n" RST, middle);
-			if (from->nums[0] < from->nums[1])
+			if ((to == vars->b && from->nums[0] > from->nums[1]) || (to == vars->a && from->nums[0] < from->nums[1]))
 				sx(vars, from);
 			push_count += 2;
 			chunk_size -= 2;
