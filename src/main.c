@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "render.h"
 
-void init(t_vars *vars, t_ivec *nums)
+void	init(t_vars *vars, t_ivec *nums)
 {
 	int	i;
 
@@ -36,34 +36,27 @@ void init(t_vars *vars, t_ivec *nums)
 	}
 }
 
-void    test_funcs(t_vars *vars)
+void	test_funcs(t_vars *vars)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	a = vars->a;
 	b = vars->b;
-
 	px(vars, a, b);
 	px(vars, a, b);
 	px(vars, a, b);
-
 	rx(vars, a);
 	rx(vars, b);
-
-	rrx(vars, a);
+	sx(vars, a);
 	rrx(vars, b);
-
 	sx(vars, a);
 	sx(vars, b);
 	ss(vars);
-
 	px(vars, b, a);
 	px(vars, b, a);
-
 	px(vars, a, b);
 	px(vars, a, b);
-
 	rr(vars);
 	rrr(vars);
 }
