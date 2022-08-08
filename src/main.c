@@ -25,6 +25,7 @@ void init(t_vars *vars, const char *argv[], int argc, int len)
 	vars->b->nums = (int *)malloc(sizeof(int) * len);
 	vars->b->c = 'b';
 
+	vars->chunks = NULL;
 	vars->print_next_command = true;
 	num_index = 0;
 	i = 1;
@@ -85,6 +86,6 @@ int	main(int argc, const char *argv[])
 	nums_len = check_args(argc, argv);
 	init(&vars, argv, argc, nums_len);
 
-	test_funcs(&vars);
-	//midwheel_algo(&vars);
+	//test_funcs(&vars);
+	midwheel_algo(&vars);
 }

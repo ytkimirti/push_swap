@@ -47,6 +47,37 @@ void exit_program()
 	exit(1);
 }
 
+void	print_chunks(t_vars *vars)
+{
+	int			i;
+	int			j;
+	int			stack_index;
+	t_stack	*stack;
+
+	if (!LOG)
+		return;
+	if (vars->a->len == 0)
+		stack = vars->b;
+	else
+		stack = vars->a;
+	i = 0;
+	stack_index = 0;
+	ft_printf("=========\n");
+	while (i < vars->chunks->len)
+	{
+		j = 0;
+		while (j < vars->chunks->arr[i])
+		{
+			ft_printf("%d\n", stack->nums[stack_index++]);
+			j++;
+		}
+		if (i != vars->chunks->len - 1)
+			ft_printf(RED "-\n" RST, stack->nums[i]);
+		i++;
+	}
+	ft_printf("=========\n");
+}
+
 void	print_stacks(t_vars *vars)
 {
 	int	max;
@@ -75,3 +106,11 @@ void	print_stacks(t_vars *vars)
 		i++;
 	}
 }
+
+
+
+
+
+
+
+

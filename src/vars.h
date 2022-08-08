@@ -3,8 +3,9 @@
 # define VARS_H
 
 #include <stdbool.h>
+#include "../libft/vector.h"
 
-# define LOG true
+# define LOG false
  
 typedef struct
 {
@@ -18,6 +19,7 @@ typedef struct
 	t_stack *a;
 	t_stack	*b;
 	bool		print_next_command;
+	t_ivec	*chunks;
 } t_vars;
 
 

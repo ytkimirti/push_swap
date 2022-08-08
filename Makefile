@@ -31,7 +31,8 @@ SRCS = src/bubble_sort.c \
 			 src/render.c \
 			 src/sorters.c \
 			 src/util_middle.c \
-			 src/util_minmax.c
+			 src/util_minmax.c \
+			 src/midwheel_algo.c
 
 TEST_SRCS = tests/test_args.c \
 						tests/test_utils.c
@@ -64,7 +65,14 @@ testv: $(TEST_BINS)
 	for test in $(TEST_BINS) ; do ./$$test --verbose ; done
 
 run_tester: all push_swap_tester
-	bash push_swap_tester/tester.sh ./ 20 1
+	@echo "======== LIMIT IS 3 =============="
+	@bash push_swap_tester/tester.sh ./ 3 5 --quiet
+	@echo "======== LIMIT IS 12 =============="
+	@bash push_swap_tester/tester.sh ./ 5 5 --quiet
+	@echo "======== LIMIT IS 700 =============="
+	@bash push_swap_tester/tester.sh ./ 100 5 --quiet
+	@echo "======== LIMIT IS 5500 =============="
+	@bash push_swap_tester/tester.sh ./ 500 5 --quiet
 
 run: all
 	./push_swap 2 3 5 12 10 6 9 7 4 1 8 11
