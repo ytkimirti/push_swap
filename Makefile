@@ -1,7 +1,7 @@
 NAME = push_swap
 
 # NOTE: Add -Werror here before pushing to intra
-CFLAGS = -Wall -Wextra -Ilibft -g
+CFLAGS = -MD -Wall -Wextra -Ilibft -g
 LDFLAGS = -Llibft
 LDLIBS = -lft
 
@@ -84,3 +84,5 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
+-include $(OBJ_DIR)/*.d
