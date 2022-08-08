@@ -8,13 +8,15 @@
 
 int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 {
-	int	middle;
-	int	rotate_count;
-	int	push_count;
-	int	i;
+	int		middle;
+	int		rotate_count;
+	int		push_count;
+	int		i;
+	bool	need_rotations;
 
 	while (chunk_size != 0)
 	{
+		need_rotations = chunk_size != from->len;
 		middle = find_middle(from->nums, chunk_size);
 		rotate_count = 0;
 		push_count = 0;
@@ -48,13 +50,16 @@ int send_chunk(t_vars *vars, t_stack *from, t_stack *to, int chunk_size)
 				print_stacks(vars);
 			}
 		}
-		if (rotate_count != 0 && LOG)
-			ft_printf(YEL "Restoring the rotations on B\n" RST, middle);
-		i = 0;
-		while (i < rotate_count)
+		if (need_rotations)
 		{
-			rrx(vars, from);
-			i++;
+			if (rotate_count != 0 && LOG)
+				ft_printf(YEL "Restoring the rotations on B\n" RST, middle);
+			i = 0;
+			while (i < rotate_count)
+			{
+				rrx(vars, from);
+				i++;
+			}
 		}
 		print_stacks(vars);
 		if (chunk_size == 2)
