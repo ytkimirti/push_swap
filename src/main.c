@@ -18,6 +18,8 @@ void	init(t_vars *vars, t_ivec *nums)
 	vars->b = (t_stack *)malloc(sizeof(t_stack));
 	if (!vars->a || !vars->b)
 		exit_program();
+	vars->a->other = vars->b;
+	vars->b->other = vars->a;
 	vars->a->nums = (int *)malloc(sizeof(int) * nums->len);
 	vars->b->nums = (int *)malloc(sizeof(int) * nums->len);
 	if (!vars->a->nums || !vars->b->nums)

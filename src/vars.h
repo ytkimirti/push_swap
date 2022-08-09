@@ -7,15 +7,16 @@
 
 #ifndef LOG
 
-# define LOG false
+# define LOG true
 
 #endif
  
-typedef struct
+typedef struct s_stack
 {
 	int	len;
 	int	*nums;
 	char c;
+	struct s_stack	*other;
 } t_stack;
 
 typedef struct
