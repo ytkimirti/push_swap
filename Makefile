@@ -34,6 +34,7 @@ SRCS = src/bubble_sort.c \
 			 src/util_is_integer.c \
 			 src/util_minmax.c \
 			 src/util_is_sorted.c \
+			 src/stack_funcs.c \
 			 src/midwheel_algo.c
 
 TEST_SRCS = tests/test_args.c \

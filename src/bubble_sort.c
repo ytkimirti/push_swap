@@ -1,8 +1,8 @@
-void bubble_sort(int arr[], int len)
+void	bubble_sort(int arr[], int len)
 {
-	int i;
-	int j;
-	int temp;
+	int	i;
+	int	j;
+	int	temp;
 
 	i = 0;
 	while (i < len - 1)
