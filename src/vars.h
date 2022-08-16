@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:27:41 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:54:02 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 17:43:23 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_stack
 typedef struct s_vars
 {
 	bool	print_next_command;
+	bool	is_checker;
 	t_stack	*a;
 	t_stack	*b;
 	t_ivec	*chunks;

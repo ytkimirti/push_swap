@@ -2,6 +2,7 @@ obj/
 /tests/bin/
 libft/
 push_swap
+checker
 .DS_Store
 /push_swap_tester
 /push_swap_result.log

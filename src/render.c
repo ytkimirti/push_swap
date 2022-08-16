@@ -6,7 +6,7 @@
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:47:40 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:43 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 17:44:00 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 void	render(t_vars *vars, char *move, char stack_name)
 {
+	if (vars->is_checker)
+		return ;
 	if (!vars->print_next_command)
 	{
 		vars->print_next_command = true;
@@ -40,6 +42,12 @@ void	render(t_vars *vars, char *move, char stack_name)
 void	exit_program(void)
 {
 	ft_putstr_fd("Error\n", 2);
+	exit(1);
+}
+
+void	ko_program(void)
+{
+	ft_putstr_fd("KO\n", 2);
 	exit(1);
 }
 

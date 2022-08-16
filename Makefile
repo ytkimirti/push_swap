@@ -1,5 +1,5 @@
 NAME = push_swap
-NAME_BONUS = checker
+BONUS_NAME = checker
 
 # NOTE: Add -Werror here before pushing to intra
 CFLAGS = -MD -Wall -Wextra -Ilibft -g
@@ -18,6 +18,8 @@ OBJ_DIR = obj
 TEST_DIR = tests
 
 ENTRY_SRCS = src/main.c
+
+BONUS_ENTRY_SRCS = src/bonus.c
 
 # NOTE: Write there with your hand when you are done!
 # SRCS = src/summer.c
@@ -42,11 +44,16 @@ SRCS = src/bubble_sort.c \
 TEST_SRCS = tests/test_args.c \
 						tests/test_utils.c
 
+BONUS_ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(BONUS_ENTRY_SRCS))
 ENTRY_OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENTRY_SRCS))
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 TEST_BINS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/bin/%, $(TEST_SRCS))
 
 all: $(NAME)
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(OBJS) $(BONUS_ENTRY_OBJS)
+	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(BONUS_ENTRY_OBJS) -o $@
 
 $(NAME): $(OBJS) $(ENTRY_OBJS)
 	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(ENTRY_OBJS) -o $@
