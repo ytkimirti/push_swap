@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:27:41 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:43 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 15:54:02 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 
 # define VARS_H
 
-#include <stdbool.h>
-#include "../libft/vector.h"
+# include <stdbool.h>
+# include "../libft/vector.h"
 
-#ifndef LOG
+# ifndef LOG
 
-# define LOG true
+#  define LOG 1
 
-#endif
- 
+# endif
+
 typedef struct s_stack
 {
-	int	len;
-	int	*nums;
-	char c;
+	int				len;
+	char			c;
+	int				*nums;
 	struct s_stack	*other;
-} t_stack;
+}	t_stack;
 
-typedef struct
+typedef struct s_vars
 {
-	t_stack *a;
+	bool	print_next_command;
+	t_stack	*a;
 	t_stack	*b;
-	bool		print_next_command;
 	t_ivec	*chunks;
-} t_vars;
-
+}	t_vars;
 
 #endif

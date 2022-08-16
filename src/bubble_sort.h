@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:27:08 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:43 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 15:36:00 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 # define BUBBLE_SORT_H
 
-void bubble_sort(int arr[], int len);
+void	bubble_sort(int arr[], int len);
 
 #endif

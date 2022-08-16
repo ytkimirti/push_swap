@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:27:20 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:43 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 15:44:35 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,25 @@ bool	does_exist(t_ivec *vec, int num)
 	return (false);
 }
 
+void	process_number(char *str, t_ivec *vec)
+{
+	int	num;
+
+	if (!is_integer(str))
+		exit_program();
+	num = ft_atoi(str);
+	free(str);
+	if (does_exist(vec, num))
+		exit_program();
+	ivec_append(vec, num);
+}
+
 t_ivec	*parse_args(int argc, const char **argv)
 {
 	int		i;
 	int		j;
 	t_ivec	*vec;
-	char		**strs;
-	int			num;
+	char	**strs;
 
 	vec = ivec_new(64);
 	i = 1;
@@ -45,13 +57,7 @@ t_ivec	*parse_args(int argc, const char **argv)
 		j = 0;
 		while (strs[j] != NULL)
 		{
-			if (!is_integer(strs[j]))
-				exit_program();
-			num = ft_atoi(strs[j]);
-			free(strs[j]);
-			if (does_exist(vec, num))
-				exit_program();
-			ivec_append(vec, num);
+			process_number(strs[j], vec);
 			j++;
 		}
 		free(strs);

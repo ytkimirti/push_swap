@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_triple.c                                      :+:      :+:    :+:   */
+/*   sorters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:44:24 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/02/21 19:47:29 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/08/16 15:46:50 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,36 @@ void	sort_triple(t_vars *vars, t_stack *s)
 		rrx(vars, s);
 }
 
-void	sort_five(t_vars *vars, t_stack *s)
+void	send_to_a(t_vars *vars, t_stack *s)
 {
-	int	target;
 	int	min;
 	int	max;
+	int	target;
 
+	while (s->len != 5)
+	{
+		target = s->other->nums[0];
+		max = s->nums[find_max(s->nums, s->len)];
+		min = s->nums[find_min(s->nums, s->len)];
+		if ((target > s->nums[s->len - 1] && target < s->nums[0])
+			|| (target > max && s->nums[s->len - 1] == max)
+			|| (target < min && s->nums[0] == min))
+			px(vars, s->other, s);
+		else
+			rx(vars, s);
+		print_stacks(vars);
+	}
+}
+
+void	sort_five(t_vars *vars, t_stack *s)
+{
 	print_stacks(vars);
 	px(vars, s, s->other);
 	px(vars, s, s->other);
 	print_stacks(vars);
 	sort_triple(vars, s);
 	print_stacks(vars);
-	
-	while (s->len != 5)
-	{
-		target = s->other->nums[0];
-		max = s->nums[find_max(s->nums, s->len)];
-		min = s->nums[find_min(s->nums, s->len)];
-
-		if ((target > s->nums[s->len - 1] && target < s->nums[0])
-				|| (target > max && s->nums[s->len - 1] == max)
-				|| (target < min && s->nums[0] == min) 
-				)
-			px(vars, s->other, s);
-		else
-			rx(vars, s);
-		print_stacks(vars);
-	}
+	send_to_a(vars, s);
 	while (!is_sorted(s->nums, s->len))
 	{
 		if (find_min(s->nums, s->len) > s->len / 2)

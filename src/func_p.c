@@ -6,10 +6,9 @@
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:22:57 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:43 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 15:37:59 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "vars.h"
 #include "render.h"
@@ -17,7 +16,7 @@
 // Push to X
 void	px(t_vars *vars, t_stack *from, t_stack *to)
 {
-	int i;
+	int	i;
 
 	if (from->len < 1)
 		return ;
