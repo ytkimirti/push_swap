@@ -1,6 +1,7 @@
 obj/
 /tests/bin/
 libft/
+/release/
 push_swap
 checker
 .DS_Store
