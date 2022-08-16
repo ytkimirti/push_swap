@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bubble_sort.h"
 #include "sorters.h"
 #include "parse_args.h"
 #include "funcs.h"

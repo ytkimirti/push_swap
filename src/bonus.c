@@ -10,17 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bubble_sort.h"
-#include "sorters.h"
 #include "parse_args.h"
 #include "funcs.h"
-#include "midwheel_algo.h"
 #include "vars.h"
 #include "../libft/libft.h"
-#include <limits.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "render.h"
 #include "init.h"
 #include "utils.h"

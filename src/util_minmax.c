@@ -13,7 +13,7 @@
 #include "vars.h"
 #include <limits.h>
 
-int	find_min(int nums[], int len)
+int	find_min(const int nums[], int len)
 {
 	int	min;
 	int	min_index;
@@ -31,7 +31,7 @@ int	find_min(int nums[], int len)
 	return (min_index);
 }
 
-int	find_max(int nums[], int len)
+int	find_max(const int nums[], int len)
 {
 	int	max;
 	int	max_index;

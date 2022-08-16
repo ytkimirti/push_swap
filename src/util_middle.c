@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-int	*copy_array(int *nums, int len)
+int	*copy_array(const int *nums, int len)
 {
 	int	*new_arr;
 	int	i;
