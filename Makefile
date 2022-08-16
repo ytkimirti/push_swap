@@ -17,29 +17,29 @@ SRC_DIR = src
 OBJ_DIR = obj
 TEST_DIR = tests
 
-ENTRY_SRCS = src/main.c
+ENTRY_SRCS = $(SRC_DIR)/main.c
 
-BONUS_ENTRY_SRCS = src/bonus.c
+BONUS_ENTRY_SRCS = $(SRC_DIR)/bonus.c
 
 # NOTE: Write there with your hand when you are done!
 # SRCS = src/summer.c
 # You SHALL NOT include main
 # SRCS := $(wildcard $(SRC_DIR)/*.c)
-SRCS = src/bubble_sort.c \
-			 src/func_p.c \
-			 src/func_r.c\
-			 src/func_rr.c \
-			 src/func_s.c \
-			 src/render.c \
-			 src/sorters.c \
-			 src/parse_args.c \
-			 src/util_middle.c \
-			 src/util_is_integer.c \
-			 src/util_minmax.c \
-			 src/util_is_sorted.c \
-			 src/stack_funcs.c \
-			 src/init.c \
-			 src/midwheel_algo.c
+SRCS = $(SRC_DIR)/bubble_sort.c \
+			 $(SRC_DIR)/func_p.c \
+			 $(SRC_DIR)/func_r.c\
+			 $(SRC_DIR)/func_rr.c \
+			 $(SRC_DIR)/func_s.c \
+			 $(SRC_DIR)/render.c \
+			 $(SRC_DIR)/sorters.c \
+			 $(SRC_DIR)/parse_args.c \
+			 $(SRC_DIR)/util_middle.c \
+			 $(SRC_DIR)/util_is_integer.c \
+			 $(SRC_DIR)/util_minmax.c \
+			 $(SRC_DIR)/util_is_sorted.c \
+			 $(SRC_DIR)/stack_funcs.c \
+			 $(SRC_DIR)/init.c \
+			 $(SRC_DIR)/midwheel_algo.c
 
 TEST_SRCS = tests/test_args.c \
 						tests/test_utils.c
@@ -52,11 +52,14 @@ TEST_BINS = $(patsubst $(TEST_DIR)/%.c, $(TEST_DIR)/bin/%, $(TEST_SRCS))
 all: $(NAME)
 bonus: $(BONUS_NAME)
 
-$(BONUS_NAME): $(OBJS) $(BONUS_ENTRY_OBJS)
+$(BONUS_NAME): $(OBJS) $(BONUS_ENTRY_OBJS) libft/libft.a
 	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(BONUS_ENTRY_OBJS) -o $@
 
-$(NAME): $(OBJS) $(ENTRY_OBJS)
+$(NAME): $(OBJS) $(ENTRY_OBJS) libft/libft.a
 	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJS) $(ENTRY_OBJS) -o $@
+
+libft/libft.a:
+	make -C libft
 
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
@@ -106,3 +109,6 @@ fclean: clean
 	rm -f $(NAME)
 
 -include $(OBJ_DIR)/*.d
+# RELEASE Tue Aug 16 18:47:58 +03 2022 REPO_COMMIT: fa2f2c7 LIBFT_COMMIT: d6bb87c
+# RELEASE Tue Aug 16 19:08:01 +03 2022 REPO_COMMIT: fa2f2c7 LIBFT_COMMIT: d6bb87c
+# RELEASE Tue Aug 16 19:09:21 +03 2022 REPO_COMMIT: fa2f2c7 LIBFT_COMMIT: d6bb87c
