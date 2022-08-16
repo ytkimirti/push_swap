@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 15:26:07 by 42istanbu         #+#    #+#             */
+/*   Updated: 2022/08/16 15:27:43 by 42istanbu        ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "bubble_sort.h"
+#include "sorters.h"
 #include "parse_args.h"
 #include "funcs.h"
 #include "midwheel_algo.h"
@@ -71,5 +84,10 @@ int	main(int argc, const char *argv[])
 	parsed_args = parse_args(argc, argv);
 	init(&vars, parsed_args);
 	ivec_del(parsed_args);
-	midwheel_algo(&vars);
+	if (vars.a->len == 3)
+		sort_triple(&vars, vars.a);
+	else if (vars.a->len == 5)
+		sort_five(&vars, vars.a);
+	else
+		midwheel_algo(&vars);
 }

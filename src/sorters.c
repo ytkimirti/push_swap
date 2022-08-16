@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "render.h"
 #include "vars.h"
 #include "funcs.h"
 #include "utils.h"
@@ -37,4 +38,42 @@ void	sort_triple(t_vars *vars, t_stack *s)
 		rx(vars, s);
 	else if (min_pos == 2 && max_pos == 1)
 		rrx(vars, s);
+}
+
+void	sort_five(t_vars *vars, t_stack *s)
+{
+	int	target;
+	int	min;
+	int	max;
+
+	print_stacks(vars);
+	px(vars, s, s->other);
+	px(vars, s, s->other);
+	print_stacks(vars);
+	sort_triple(vars, s);
+	print_stacks(vars);
+	
+	while (s->len != 5)
+	{
+		target = s->other->nums[0];
+		max = s->nums[find_max(s->nums, s->len)];
+		min = s->nums[find_min(s->nums, s->len)];
+
+		if ((target > s->nums[s->len - 1] && target < s->nums[0])
+				|| (target > max && s->nums[s->len - 1] == max)
+				|| (target < min && s->nums[0] == min) 
+				)
+			px(vars, s->other, s);
+		else
+			rx(vars, s);
+		print_stacks(vars);
+	}
+	while (!is_sorted(s->nums, s->len))
+	{
+		if (find_min(s->nums, s->len) > s->len / 2)
+			rrx(vars, s);
+		else
+			rx(vars, s);
+	}
+	print_stacks(vars);
 }
