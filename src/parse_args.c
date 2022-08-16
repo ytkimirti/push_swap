@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:27:20 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:44:35 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 17:49:45 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_ivec	*parse_args(int argc, const char **argv)
 	i = 1;
 	while (i < argc)
 	{
+		if (argv[i][0] == '\0')
+			exit_program();
 		strs = ft_split(argv[i], ' ');
 		j = 0;
 		while (strs[j] != NULL)

@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:27:47 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:50 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/16 17:48:06 by 42istanbu        ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ Test(is_integer, negative)
 
 Test(is_integer, weird)
 {
+	cr_assert(not (is_integer("")));
 	cr_assert(not (is_integer("one")));
 	cr_assert(not (is_integer("two three")));
 	cr_assert(not (is_integer("  asd  ")));
