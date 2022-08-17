@@ -6,7 +6,7 @@
 /*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:26:07 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 17:43:36 by 42istanbu        ###   ########.tr       */
+/*   Updated: 2022/08/17 20:58:39 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, const char *argv[])
 	t_vars	vars;
 	t_ivec	*parsed_args;
 
-	parsed_args = parse_args(argc, argv);
+		parsed_args = parse_args (argc, argv);
 	init(&vars, parsed_args);
 	vars.is_checker = false;
 	ivec_del(parsed_args);
