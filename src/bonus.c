@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:17:37 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/16 18:19:27 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/09/08 15:09:34 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	main(int argc, const char *argv[])
 		if (cmd == NULL)
 			break ;
 		execute_cmd(&vars, cmd);
+		free(cmd);
 	}
 	if (is_sorted(vars.a->nums, vars.a->len) && vars.b->len == 0)
 		ft_printf("OK\n");
